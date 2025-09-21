@@ -1,10 +1,30 @@
-[gd_scene load_steps=11 format=3 uid="uid://nhiysvj12brr"]
+[gd_scene load_steps=14 format=3 uid="uid://nhiysvj12brr"]
 
 [ext_resource type="ArrayMesh" uid="uid://b0ch7g7tx8wcj" path="res://Models/Platformer/block-grass-low-large.obj" id="1_4hvuo"]
 [ext_resource type="ArrayMesh" uid="uid://conbyafml48br" path="res://Models/Platformer/block-grass-narrow.obj" id="2_y4dr7"]
 [ext_resource type="ArrayMesh" uid="uid://ec3kj43cfodg" path="res://Models/Platformer/block-grass-overhang-low.obj" id="3_didp7"]
 [ext_resource type="ArrayMesh" uid="uid://b7wvqqbuggote" path="res://Models/Platformer/block-grass-large.obj" id="4_2a60c"]
 [ext_resource type="ArrayMesh" uid="uid://c8bcvqqlplbps" path="res://Models/Platformer/block-grass-large-tall.obj" id="5_4iphx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y4dr7"]
+
+[sub_resource type="Sky" id="Sky_didp7"]
+sky_material = SubResource("ProceduralSkyMaterial_y4dr7")
+
+[sub_resource type="Environment" id="Environment_2a60c"]
+background_mode = 2
+sky = SubResource("Sky_didp7")
+ambient_light_source = 2
+ambient_light_color = Color(0.788235, 0.47451, 0.898039, 1)
+fog_enabled = true
+fog_light_color = Color(0.662745, 0.478431, 0.643137, 1)
+fog_light_energy = 1.2
+fog_density = 0.06
+fog_height = 2.0
+fog_height_density = 0.4
+adjustment_enabled = true
+adjustment_contrast = 1.2
+adjustment_saturation = 1.2
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jgkgd"]
 points = PackedVector3Array(-0.960469, 0, -0.712585, 1.02225, 0.375568, 0.798547, 0.925047, 0.343508, -0.956875, -0.976889, 0.5, 0.756357, 0.805516, 0, 0.929408, -0.756168, 0.5, -0.976887, -0.867297, -2.77556e-17, 0.898544, 0.867436, -2.77556e-17, -0.898544, 0.75631, 0.5, 0.976887, 0.976834, 0.5, -0.756357, -0.798522, 0.375563, 1.02226, -0.7124, 0, -0.960466, -1.02208, 0.407556, -0.766558, 0.960414, 2.77556e-17, -0.712585, 0.733024, 0.439086, -1.02003, -1.02226, 0.375563, 0.798516, 0.960414, 0, 0.712585, 0.798479, 0.375565, 1.02228, -0.7124, 0, 0.960466, -0.798521, 0.375563, -1.02226, -0.960469, 2.77556e-17, 0.712585, 0.712539, 0, -0.960466, 1.02225, 0.375568, -0.798547, 0.976834, 0.5, 0.756357, -0.756168, 0.5, 0.976887, -0.976889, 0.5, -0.756357, 0.75631, 0.5, -0.976887, -0.95686, 0.343507, -0.925082, 0.712539, 0, 0.960466, 0.956845, 0.343511, 0.925121, 0.798479, 0.375565, -1.02228, -0.867297, -2.77556e-17, -0.898544)
@@ -26,88 +46,95 @@ points = PackedVector3Array(0.82963, 0.0192098, 0.957173, -0.797097, 1.8687, -1.
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.905473, 0.424405, 0, -0.424405, 0.905473, 0, 0.957355, 1.93975)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Environment" type="Node" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(0.815835, -0.267944, 0.512464, 0, 0.886179, 0.463342, -0.578285, -0.378011, 0.722976, 0, 3.09812, 1.53042)
 shadow_enabled = true
 shadow_blur = 5.0
 
-[node name="Platform1" type="StaticBody3D" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_2a60c")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform1"]
+[node name="Platforms" type="Node" parent="."]
+
+[node name="Platform1" type="StaticBody3D" parent="Platforms"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform1"]
 shape = SubResource("ConvexPolygonShape3D_jgkgd")
 
-[node name="Block-grass-low-large" type="MeshInstance3D" parent="Platform1"]
+[node name="Block-grass-low-large" type="MeshInstance3D" parent="Platforms/Platform1"]
 mesh = ExtResource("1_4hvuo")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="Platform2" type="StaticBody3D" parent="."]
+[node name="Platform2" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32113, 0, 0)
 
-[node name="Block-grass-narrow" type="MeshInstance3D" parent="Platform2"]
+[node name="Block-grass-narrow" type="MeshInstance3D" parent="Platforms/Platform2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.183898, -0.135304, 0)
 mesh = ExtResource("2_y4dr7")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.183898, -0.135304, 0)
 shape = SubResource("ConvexPolygonShape3D_bs12r")
 
-[node name="Platform3" type="StaticBody3D" parent="."]
+[node name="Platform3" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8231, 0, -1.30162)
 
-[node name="Block-grass-narrow" type="MeshInstance3D" parent="Platform3"]
+[node name="Block-grass-narrow" type="MeshInstance3D" parent="Platforms/Platform3"]
 mesh = ExtResource("2_y4dr7")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform3"]
 shape = SubResource("ConvexPolygonShape3D_bs12r")
 
-[node name="Platform4" type="StaticBody3D" parent="."]
+[node name="Platform4" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.09651, 0, 0)
 
-[node name="Block-grass-narrow" type="MeshInstance3D" parent="Platform4"]
+[node name="Block-grass-narrow" type="MeshInstance3D" parent="Platforms/Platform4"]
 mesh = ExtResource("2_y4dr7")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform4"]
 shape = SubResource("ConvexPolygonShape3D_bs12r")
 
-[node name="Platform5" type="StaticBody3D" parent="."]
+[node name="Platform5" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.948795, 0.56282, -3.59746)
 
-[node name="Block-grass-overhang-low" type="MeshInstance3D" parent="Platform5"]
+[node name="Block-grass-overhang-low" type="MeshInstance3D" parent="Platforms/Platform5"]
 mesh = ExtResource("3_didp7")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform5"]
 shape = SubResource("ConvexPolygonShape3D_rqhku")
 
-[node name="Platform6" type="StaticBody3D" parent="."]
+[node name="Platform6" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27987, 0.994981, -3.4785)
 
-[node name="Block-grass-overhang-low" type="MeshInstance3D" parent="Platform6"]
+[node name="Block-grass-overhang-low" type="MeshInstance3D" parent="Platforms/Platform6"]
 mesh = ExtResource("3_didp7")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform6"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform6"]
 shape = SubResource("ConvexPolygonShape3D_rqhku")
 
-[node name="Platform7" type="StaticBody3D" parent="."]
+[node name="Platform7" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.14594, 0, -3.50044)
 
-[node name="Block-grass-large" type="MeshInstance3D" parent="Platform7"]
+[node name="Block-grass-large" type="MeshInstance3D" parent="Platforms/Platform7"]
 mesh = ExtResource("4_2a60c")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform7"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform7"]
 shape = SubResource("ConvexPolygonShape3D_cpkqv")
 
-[node name="Platform8" type="StaticBody3D" parent="."]
+[node name="Platform8" type="StaticBody3D" parent="Platforms"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.724, 0, -3.515)
 
-[node name="Block-grass-large-tall" type="MeshInstance3D" parent="Platform8"]
+[node name="Block-grass-large-tall" type="MeshInstance3D" parent="Platforms/Platform8"]
 mesh = ExtResource("5_4iphx")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Platform8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform8"]
 shape = SubResource("ConvexPolygonShape3D_d1mwp")
