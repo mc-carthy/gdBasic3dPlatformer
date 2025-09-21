@@ -8,7 +8,7 @@
 radius = 0.19
 height = 0.77
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_cvnsp")
 
 [node name="Model" type="MeshInstance3D" parent="."]
