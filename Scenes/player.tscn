@@ -66,3 +66,5 @@ offset_right = 230.0
 offset_bottom = 133.0
 text = "Score: 500"
 label_settings = SubResource("LabelSettings_vgqql")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

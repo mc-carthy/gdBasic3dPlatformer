@@ -9,6 +9,10 @@ signal OnUpdateScore (score: int)
 @export var gravity: float = 20.0
 
 @onready var camera: Camera3D = $Camera3D
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer
+
+var coin_sfx: AudioStream = preload('res://Audio/coin.wav')
+var damage_sfx: AudioStream = preload('res://Audio/take_damage.wav')
 
 func _physics_process(delta: float) -> void:
 	# gravity
@@ -29,6 +33,7 @@ func _process(_delta: float) -> void:
 		game_over()
 
 func take_damage(amount: int) -> void:
+	play_sound(damage_sfx)
 	health -= amount
 	OnTakeDamage.emit(health)
 	if health <= 0:
@@ -39,5 +44,10 @@ func game_over() -> void:
 	get_tree().change_scene_to_file('res://Scenes/menu.tscn')
 
 func increase_score(amount: int) -> void:
+	play_sound(coin_sfx)
 	PlayerStats.score += amount
 	OnUpdateScore.emit(PlayerStats.score)
+
+func play_sound(sound: AudioStream) -> void:
+	audio.stream = sound
+	audio.play()
