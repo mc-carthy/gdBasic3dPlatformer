@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	velocity.z = move_direction.z * move_speed
 	move_and_slide()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if global_position.y <= -5.0:
 		game_over()
 

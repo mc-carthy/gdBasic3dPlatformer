@@ -26,5 +26,5 @@ func move_bob(delta: float) -> void:
 		return
 	
 	var time = Time.get_unix_time_from_system()
-	var y_scale = 1 + sin(time * 30) * 0.05
+	var y_scale = 1 + sin(time * 30) * delta
 	scale.y = y_scale

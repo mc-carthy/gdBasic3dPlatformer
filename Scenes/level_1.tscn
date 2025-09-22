@@ -1,22 +1,24 @@
-[gd_scene load_steps=17 format=3 uid="uid://nhiysvj12brr"]
+[gd_scene load_steps=19 format=3 uid="uid://nhiysvj12brr"]
 
-[ext_resource type="ArrayMesh" uid="uid://b0ch7g7tx8wcj" path="res://Models/Platformer/block-grass-low-large.obj" id="1_4hvuo"]
-[ext_resource type="PackedScene" uid="uid://35macvsqpp0l" path="res://Scenes/player.tscn" id="1_didp7"]
-[ext_resource type="ArrayMesh" uid="uid://conbyafml48br" path="res://Models/Platformer/block-grass-narrow.obj" id="2_y4dr7"]
-[ext_resource type="ArrayMesh" uid="uid://ec3kj43cfodg" path="res://Models/Platformer/block-grass-overhang-low.obj" id="3_didp7"]
-[ext_resource type="ArrayMesh" uid="uid://b7wvqqbuggote" path="res://Models/Platformer/block-grass-large.obj" id="4_2a60c"]
-[ext_resource type="ArrayMesh" uid="uid://c8bcvqqlplbps" path="res://Models/Platformer/block-grass-large-tall.obj" id="5_4iphx"]
-[ext_resource type="PackedScene" uid="uid://b3ngeexwp2t8f" path="res://Scenes/enemy.tscn" id="7_2a60c"]
-[ext_resource type="PackedScene" uid="uid://d08w63dunkrdm" path="res://Scenes/coin.tscn" id="8_4iphx"]
+[ext_resource type="PackedScene" uid="uid://35macvsqpp0l" path="res://Scenes/player.tscn" id="1_chwpn"]
+[ext_resource type="ArrayMesh" uid="uid://b0ch7g7tx8wcj" path="res://Models/Platformer/block-grass-low-large.obj" id="2_af3po"]
+[ext_resource type="ArrayMesh" uid="uid://conbyafml48br" path="res://Models/Platformer/block-grass-narrow.obj" id="3_uy8f0"]
+[ext_resource type="ArrayMesh" uid="uid://ec3kj43cfodg" path="res://Models/Platformer/block-grass-overhang-low.obj" id="4_6r07y"]
+[ext_resource type="ArrayMesh" uid="uid://b7wvqqbuggote" path="res://Models/Platformer/block-grass-large.obj" id="5_6ioyp"]
+[ext_resource type="ArrayMesh" uid="uid://c8bcvqqlplbps" path="res://Models/Platformer/block-grass-large-tall.obj" id="6_oovug"]
+[ext_resource type="PackedScene" uid="uid://d08w63dunkrdm" path="res://Scenes/coin.tscn" id="7_8i23i"]
+[ext_resource type="PackedScene" uid="uid://b3ngeexwp2t8f" path="res://Scenes/enemy.tscn" id="8_8yhm2"]
+[ext_resource type="PackedScene" uid="uid://d2mhq3fnqflw" path="res://Scenes/end_flag.tscn" id="9_pjppf"]
+[ext_resource type="PackedScene" uid="uid://dsw7wschfv4i6" path="res://Scenes/level_2.tscn" id="10_yltlr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y4dr7"]
 
-[sub_resource type="Sky" id="Sky_didp7"]
+[sub_resource type="Sky" id="Sky_rqhku"]
 sky_material = SubResource("ProceduralSkyMaterial_y4dr7")
 
 [sub_resource type="Environment" id="Environment_2a60c"]
 background_mode = 2
-sky = SubResource("Sky_didp7")
+sky = SubResource("Sky_rqhku")
 ambient_light_source = 2
 ambient_light_color = Color(0.788235, 0.47451, 0.898039, 1)
 fog_enabled = true
@@ -46,7 +48,7 @@ points = PackedVector3Array(0.82963, 0.0192098, 0.957173, -0.797097, 1.8687, -1.
 
 [node name="Main" type="Node3D"]
 
-[node name="Player" parent="." instance=ExtResource("1_didp7")]
+[node name="Player" parent="." instance=ExtResource("1_chwpn")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.537011, 0)
 
 [node name="Environment" type="Node" parent="."]
@@ -67,7 +69,7 @@ environment = SubResource("Environment_2a60c")
 shape = SubResource("ConvexPolygonShape3D_jgkgd")
 
 [node name="Block-grass-low-large" type="MeshInstance3D" parent="Platforms/Platform1"]
-mesh = ExtResource("1_4hvuo")
+mesh = ExtResource("2_af3po")
 skeleton = NodePath("../../..")
 
 [node name="Platform2" type="StaticBody3D" parent="Platforms"]
@@ -75,7 +77,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32113, 0, 0)
 
 [node name="Block-grass-narrow" type="MeshInstance3D" parent="Platforms/Platform2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.183898, -0.135304, 0)
-mesh = ExtResource("2_y4dr7")
+mesh = ExtResource("3_uy8f0")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform2"]
@@ -86,7 +88,7 @@ shape = SubResource("ConvexPolygonShape3D_bs12r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8231, 0, -1.30162)
 
 [node name="Block-grass-narrow" type="MeshInstance3D" parent="Platforms/Platform3"]
-mesh = ExtResource("2_y4dr7")
+mesh = ExtResource("3_uy8f0")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform3"]
@@ -96,7 +98,7 @@ shape = SubResource("ConvexPolygonShape3D_bs12r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.09651, 0, 0)
 
 [node name="Block-grass-narrow" type="MeshInstance3D" parent="Platforms/Platform4"]
-mesh = ExtResource("2_y4dr7")
+mesh = ExtResource("3_uy8f0")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform4"]
@@ -106,7 +108,7 @@ shape = SubResource("ConvexPolygonShape3D_bs12r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.948795, 0.56282, -3.59746)
 
 [node name="Block-grass-overhang-low" type="MeshInstance3D" parent="Platforms/Platform5"]
-mesh = ExtResource("3_didp7")
+mesh = ExtResource("4_6r07y")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform5"]
@@ -116,7 +118,7 @@ shape = SubResource("ConvexPolygonShape3D_rqhku")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27987, 0.994981, -3.4785)
 
 [node name="Block-grass-overhang-low" type="MeshInstance3D" parent="Platforms/Platform6"]
-mesh = ExtResource("3_didp7")
+mesh = ExtResource("4_6r07y")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform6"]
@@ -126,7 +128,7 @@ shape = SubResource("ConvexPolygonShape3D_rqhku")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.14594, 0, -3.50044)
 
 [node name="Block-grass-large" type="MeshInstance3D" parent="Platforms/Platform7"]
-mesh = ExtResource("4_2a60c")
+mesh = ExtResource("5_6ioyp")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform7"]
@@ -136,7 +138,7 @@ shape = SubResource("ConvexPolygonShape3D_cpkqv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.724, 0, -3.515)
 
 [node name="Block-grass-large-tall" type="MeshInstance3D" parent="Platforms/Platform8"]
-mesh = ExtResource("5_4iphx")
+mesh = ExtResource("6_oovug")
 skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform8"]
@@ -144,28 +146,32 @@ shape = SubResource("ConvexPolygonShape3D_d1mwp")
 
 [node name="Coins" type="Node" parent="."]
 
-[node name="Coin" parent="Coins" instance=ExtResource("8_4iphx")]
+[node name="Coin" parent="Coins" instance=ExtResource("7_8i23i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09824, 1.25376, 0)
 
-[node name="Coin2" parent="Coins" instance=ExtResource("8_4iphx")]
+[node name="Coin2" parent="Coins" instance=ExtResource("7_8i23i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80117, 1.25376, -1.20605)
 
-[node name="Coin3" parent="Coins" instance=ExtResource("8_4iphx")]
+[node name="Coin3" parent="Coins" instance=ExtResource("7_8i23i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.919544, 1.25376, -3.63838)
 
-[node name="Coin4" parent="Coins" instance=ExtResource("8_4iphx")]
+[node name="Coin4" parent="Coins" instance=ExtResource("7_8i23i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42512, 1.77814, -3.5209)
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("7_2a60c")]
+[node name="Enemy" parent="Enemies" instance=ExtResource("8_8yhm2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, -1, 0)
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource("7_2a60c")]
+[node name="Enemy2" parent="Enemies" instance=ExtResource("8_8yhm2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.7081, -0.240972, -3.66449)
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource("7_2a60c")]
+[node name="Enemy3" parent="Enemies" instance=ExtResource("8_8yhm2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.255186, -0.240972, -3.66449)
 
-[node name="Enemy4" parent="Enemies" instance=ExtResource("7_2a60c")]
+[node name="Enemy4" parent="Enemies" instance=ExtResource("8_8yhm2")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.30591, -0.240972, -3.66449)
+
+[node name="EndFlag" parent="." instance=ExtResource("9_pjppf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6995, 1.60717, -3.8599)
+scene_to_load = ExtResource("10_yltlr")
