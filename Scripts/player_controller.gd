@@ -37,7 +37,7 @@ func take_damage(amount: int) -> void:
 	health -= amount
 	OnTakeDamage.emit(health)
 	if health <= 0:
-		game_over();
+		call_deferred("game_over")
 
 func game_over() -> void:
 	PlayerStats.score = 0
