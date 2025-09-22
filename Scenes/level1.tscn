@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://nhiysvj12brr"]
+[gd_scene load_steps=17 format=3 uid="uid://nhiysvj12brr"]
 
 [ext_resource type="ArrayMesh" uid="uid://b0ch7g7tx8wcj" path="res://Models/Platformer/block-grass-low-large.obj" id="1_4hvuo"]
 [ext_resource type="PackedScene" uid="uid://35macvsqpp0l" path="res://Scenes/player.tscn" id="1_didp7"]
@@ -7,6 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b7wvqqbuggote" path="res://Models/Platformer/block-grass-large.obj" id="4_2a60c"]
 [ext_resource type="ArrayMesh" uid="uid://c8bcvqqlplbps" path="res://Models/Platformer/block-grass-large-tall.obj" id="5_4iphx"]
 [ext_resource type="PackedScene" uid="uid://b3ngeexwp2t8f" path="res://Scenes/enemy.tscn" id="7_2a60c"]
+[ext_resource type="PackedScene" uid="uid://d08w63dunkrdm" path="res://Scenes/coin.tscn" id="8_4iphx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y4dr7"]
 
@@ -141,5 +142,30 @@ skeleton = NodePath("../../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/Platform8"]
 shape = SubResource("ConvexPolygonShape3D_d1mwp")
 
-[node name="Enemy" parent="." instance=ExtResource("7_2a60c")]
+[node name="Coins" type="Node" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("8_4iphx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09824, 1.25376, 0)
+
+[node name="Coin2" parent="Coins" instance=ExtResource("8_4iphx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.80117, 1.25376, -1.20605)
+
+[node name="Coin3" parent="Coins" instance=ExtResource("8_4iphx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.919544, 1.25376, -3.63838)
+
+[node name="Coin4" parent="Coins" instance=ExtResource("8_4iphx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42512, 1.77814, -3.5209)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("7_2a60c")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.5, -1, 0)
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("7_2a60c")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.7081, -0.240972, -3.66449)
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("7_2a60c")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.255186, -0.240972, -3.66449)
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource("7_2a60c")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.30591, -0.240972, -3.66449)
